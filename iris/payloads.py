@@ -17,21 +17,23 @@ def set_active_place(place_id=None):
 		}
 	})
 
-def get_attributes():
+def get_attributes(device_id=None, namespace=None, key=None):
 	return json.dumps({
 		"type": "base:GetAttributes",
 		"headers": {
-			"destination": "SERV:place:{}".format(place_id),
+			"destination": "DRIV:dev:{}".format(device_id),
 			"correlationId": "74cb2fe5-3c80-4294-bf36-e6a6a5faf08a",
 			"isRequest": True
 		},
 		"payload":{
 			"messageType": "base:GetAttributes",
-			"attributes": {}
+			"attributes": {
+				namespace: key,
+			}
 		}
 	})
 
-def set_attribute(place_id: None, device_id: None, namespace: None, key: None, value: None):
+def set_attributes(place_id: None, device_id: None, namespace: None, key: None, value: None):
 	return json.dumps({
 		"type": "base:SetAttributes",
 		"headers": {
@@ -45,6 +47,21 @@ def set_attribute(place_id: None, device_id: None, namespace: None, key: None, v
 			"attributes": {
 				"{}:{}".format(namespace, key): value
 			}
+		}
+	})
+
+def person(address=None, method=None, namespace=None):
+	return json.dumps({
+		"type": "person:{}".format(method),
+		"headers": {
+			#"destination": "SERV:person:{}".format(person_id),
+			"destination": address,
+			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"isRequest": True
+		},
+		"payload": {
+			"messageType": "{}:{}".format(namespace, method),
+			"attributes": {}
 		}
 	})
 

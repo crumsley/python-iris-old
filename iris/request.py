@@ -26,11 +26,12 @@ def send(client=None, payload=None, debug=False):
 			message = "The method {} failed with an unknown error.".format(method)
 
 		client.success = False
-		client.response = {"status": "error", "body": message}
+		client.response = {"status": "error", "message": message}
 
 	else:
 		client.success = True
-		client.response = {"status": "success", "body": response}
+		client.response = response
+		client.response["status"] = "success"
 
 def __get_method(stack):
 	invalid_scripts = ["<module>", "__init__"]

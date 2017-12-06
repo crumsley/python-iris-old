@@ -1,5 +1,6 @@
 import iris.attributes as attributes
 import iris.payloads as payloads
+import iris.request as request
 from iris.devices.device import Device
 
 class Thermostat(object):
@@ -11,7 +12,7 @@ class Thermostat(object):
 
 	def set_coolsetpoint(self, **kwargs):
 		setpoint = kwargs["setpoint"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,
@@ -22,7 +23,7 @@ class Thermostat(object):
 
 	def set_heatsetpoint(self, **kwargs):
 		setpoint = kwargs["setpoint"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,
@@ -33,7 +34,7 @@ class Thermostat(object):
 
 	def set_hvacmode(self, **kwargs):
 		mode = kwargs["mode"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,
@@ -44,7 +45,7 @@ class Thermostat(object):
 
 	def set_fanmode(self, **kwargs):
 		mode = kwargs["mode"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,
@@ -55,7 +56,7 @@ class Thermostat(object):
 
 	def set_emergencyheat(self, **kwargs):
 		mode = kwargs["mode"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,
@@ -66,7 +67,7 @@ class Thermostat(object):
 
 	def set_controlmode(self, **kwargs):
 		mode = kwargs["mode"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,
@@ -77,7 +78,7 @@ class Thermostat(object):
 
 	def set_filterlifespanruntime(self, **kwargs):
 		hours = kwargs["hours"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,
@@ -88,7 +89,7 @@ class Thermostat(object):
 
 	def set_filterlifespandays(self, **kwargs):
 		days = kwargs["days"]
-		payload = payloads.set_attribute(
+		payload = payloads.set_attributes(
 			place_id=self.iris.place_id,
 			device_id=self.iris.devices[kwargs["device"]]["base:id"],
 			namespace=self.namespace,

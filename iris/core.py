@@ -34,6 +34,8 @@ class Iris(object):
 		cookie = "irisAuthToken={}".format(token)
 		self.init()
 		self.build_device_map()
+		self.build_person_map()
+		self.get_hub_id()
 
 	def init(self, **kwargs):
 		self.ws = websocket.create_connection(
@@ -48,6 +50,14 @@ class Iris(object):
 		self.ws.send(payloads.set_active_place(place_id=self.place_id))
 		result = utils.validate_json(self.ws.recv())
 
+		self.get_hub_id()
+
+	def get_hub_id(self, **kwargs):
+		self.get_hub()
+		if self.success:
+			attributes = self.response["payload"]["attributes"]
+			self.hub_id = attributes["hub"]["base:id"]
+
 	def get_place_id(self, result):
 		attributes = result["payload"]["attributes"]
 		for place in attributes["places"]:
@@ -60,17 +70,34 @@ class Iris(object):
 		self.list_devices()
 		if self.success:
 			self.devices = {}
-			if "payload" in self.response["body"]:
-				if "attributes" in self.response["body"]["payload"]:
-					if "devices" in self.response["body"]["payload"]["attributes"]:
-						if isinstance(self.response["body"]["payload"]["attributes"]["devices"], list):
-							for device in self.response["body"]["payload"]["attributes"]["devices"]:
+			if "payload" in self.response:
+				if "attributes" in self.response["payload"]:
+					if "devices" in self.response["payload"]["attributes"]:
+						if isinstance(self.response["payload"]["attributes"]["devices"], list):
+							for device in self.response["payload"]["attributes"]["devices"]:
 								device_name = device["dev:name"]
 								self.devices[device_name] = device
 			self.response = {}
 
 		else:
-			raise exception.DeviceMapError(message=self.response["body"])
+			raise exception.DeviceMapError(message=self.response)
+
+	def build_person_map(self, **kwargs):
+		self.response = {}; payload = {}
+		self.list_persons()
+		if self.success:
+			self.persons = {}
+			if "payload" in self.response:
+				if "attributes" in self.response["payload"]:
+					if "persons" in self.response["payload"]["attributes"]:
+						if isinstance(self.response["payload"]["attributes"]["persons"], list):
+							for person in self.response["payload"]["attributes"]["persons"]:
+								name = "{} {}".format(person["person:firstName"], person["person:lastName"])
+								self.persons[name] = person
+			self.response = {}
+
+		else:
+			raise exception.PersonMapError(message=self.response)
 
 	def close(self, **kwargs):
 		self.ws.close()
@@ -105,7 +132,7 @@ class Iris(object):
 		if kwargs["device"] in self.devices:
 			device = self.devices[kwargs["device"]]
 			self.success = True
-			self.response["body"] = device
+			self.response = device
 		else:
 			self.success = False
 			self.response = {"status": "error", "message": "device \"{}\" not found.".format(kwargs["device"])}
@@ -126,4 +153,10 @@ class Iris(object):
 		request.send(
 			client=self,
 			payload=payloads.place(place_id=self.place_id, method="ListDevices")
+		)
+
+	def list_persons(self, **kwargs):
+		request.send(
+			client=self,
+			payload=payloads.place(place_id=self.place_id, method="ListPersons")
 		)

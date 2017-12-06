@@ -4,18 +4,27 @@ from iris.core import Iris
 from iris.devices.switch import Switch
 from iris.devices.thermostat import Thermostat
 from iris.devices.doorlock import DoorLock
+from iris.devices.person import Person
 from pprint import pprint
 
 iris = Iris(
 	profile="MyHome",
-	debug=False
+	debug=True
 )
 
-s = Switch(iris=iris)
-print(s.namespace)
+name = "Bob Jones"
+
+p = Person(iris=iris)
+#p.list_persons()
+p.list_history_entries(name=name)
+#p.get_security_answers(name=name)
+pprint(p.response)
+#s.foo()
+#pprint(s.response)
+#print(iris.hub_id)
 #pprint(s.iris.devices)
 #pprint(s.iris.ws)
-
+#pprint(iris.persons)
 #iris.battery_states()
 #iris.find_device()
 #iris.get_hub()

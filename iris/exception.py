@@ -97,6 +97,15 @@ class DeviceMapError(Exception):
 		self.error = "Failed to generate the required device map. The error is: {}.".format(self.message)
 		return self.error
 
+class PersonMapError(Exception):
+	def __init__(self, message=None):
+		self.message = message
+		return
+
+	def __str__(self):
+		self.error = "Failed to generate the required person map. The error is: {}.".format(self.message)
+		return self.error
+
 class NotAnIrisCoreObject(Exception):
 	def __init__(self, class_name=None):
 		self.class_name = class_name
