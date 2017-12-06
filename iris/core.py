@@ -102,51 +102,10 @@ class Iris(object):
 	def close(self, **kwargs):
 		self.ws.close()
 
-	#def find_device(self, **kwargs):
-	#	self.response = {}; payload = {}
-	#	self.response = {
-	#		"status": "success",
-	#		"results": [obj for name, obj in self.devices.items() if obj["dev:devtypehint"] == "Thermostat"]
-	#	}
-
-	def battery_states(self, **kwargs):
-		self.build_device_map()
-		battery_states = []
-		for name, obj in self.devices.items():
-			if "devpow:source" in obj and obj["devpow:source"] == "BATTERY":
-				battery_states.append({
-					"name": obj["dev:name"],
-					"vendor": obj["dev:vendor"],
-					"model": obj["dev:model"],
-					"battery": "{}%".format(obj["devpow:battery"]),
-				})
-		self.success = True
-		self.response = {"status": "success", "results": battery_states}
-		#if self.success:
-		#	self.battery_states = []
-		#	for name, obj in self.devices:
-
-
-	def get_device(self, **kwargs):
-		self.response = {}; payload = {}
-		if kwargs["device"] in self.devices:
-			device = self.devices[kwargs["device"]]
-			self.success = True
-			self.response = device
-		else:
-			self.success = False
-			self.response = {"status": "error", "message": "device \"{}\" not found.".format(kwargs["device"])}
-
 	def get_hub(self, **kwargs):
 		request.send(
 			client=self,
 			payload=payloads.place(place_id=self.place_id, method="GetHub")
-		)
-
-	def hub_chime(self, **kwargs):
-		request.send(
-			client=self,
-			payload=payloads.hub_chime(place_id=self.place_id)
 		)
 
 	def list_devices(self, **kwargs):
@@ -160,3 +119,23 @@ class Iris(object):
 			client=self,
 			payload=payloads.place(place_id=self.place_id, method="ListPersons")
 		)
+
+	def get_base_address(self, type=None, name=None):
+		if type == "person":
+			if name in self.persons:
+				return self.persons[name]["base:address"]
+			else:
+				return None
+		elif type == "device":
+			if name in self.devices:
+				return self.devices[name]["base:address"]
+			else:
+				return None
+		else:
+			return None
+
+	def make_response(self, status=None, content_key=None, content=None):
+		return {
+			"status": status,
+			content_key: content
+		}
