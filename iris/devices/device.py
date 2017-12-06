@@ -1,9 +1,4 @@
-import iris.attributes as attributes
 import iris.exception as exception
-import iris.payloads as payloads
-import iris.request as request
-import iris.utils as utils
-from pprint import pprint
 
 class Device(object):
 	def __init__(self, **kwargs):
@@ -15,7 +10,7 @@ class Device(object):
 		else:
 			raise exception.MissingConstructorParameter(parameter="iris")
 
-		if not str(type(self.iris)) == "<class 'iris.core.Iris'>":
+		if str(type(self.iris)) == "<class 'iris.core.Iris'>":
+			self.ws = self.iris.ws
+		else:
 			raise exception.NotAnIrisCoreObject(class_name=str(type(self)))
-
-		self.ws = self.iris.ws
