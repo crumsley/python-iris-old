@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from iris.core import Iris
+from iris.devices.switch import Switch
 from iris.devices.thermostat import Thermostat
 from iris.devices.doorlock import DoorLock
 from pprint import pprint
@@ -10,6 +11,11 @@ iris = Iris(
 	debug=False
 )
 
+s = Switch(iris=iris)
+print(s.namespace)
+#pprint(s.iris.devices)
+#pprint(s.iris.ws)
+
 #iris.battery_states()
 #iris.find_device()
 #iris.get_hub()
@@ -17,7 +23,7 @@ iris = Iris(
 #therm = Thermostat(iris=iris)
 #therm.set_hvacmode(device="Downstairs", mode="COOL")
 #therm.set_coolsetpoint(device="Downstairs", setpoint=68)
-pprint(iris.devices)
+#pprint(iris.devices)
 #iris.list_devices()
 #iris.show_history(limit=10)
 #iris.list_rules()
@@ -27,4 +33,4 @@ pprint(iris.devices)
 #iris.light_on(device="Entry Way Smart Plug")
 ##iris.unlock_door(device="Front Door")
 #iris.hub_chime()
-pprint(iris.response)
+#pprint(iris.response)
