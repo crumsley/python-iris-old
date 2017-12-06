@@ -9,6 +9,7 @@ class Person(Device):
 
 		self.namespace = "person"
 		#self.attributes = attributes[self.namespace]
+		print(type(self.iris))
 
 	def list_persons(self, **kwargs):
 		payload = payloads.place(
@@ -28,7 +29,7 @@ class Person(Device):
 			request.send(client=self, payload=payload, debug=self.iris.debug)
 		else:
 			self.response = self.iris.make_response(
-				status="error",
+				success=False,
 				content_key="message",
 				content="User {} not found.".format(kwargs["name"])
 			)
@@ -44,7 +45,7 @@ class Person(Device):
 			request.send(client=self, payload=payload, debug=self.iris.debug)
 		else:
 			self.response = self.iris.make_response(
-				status="error",
+				success=False,
 				content_key="message",
 				content="User {} not found.".format(kwargs["name"])
 			)

@@ -1,4 +1,3 @@
-# https://github.com/thegillion/Iris-Web-Portal/blob/master/powerhouse.js
 import json
 
 def set_active_place(place_id=None):
@@ -79,75 +78,73 @@ def place(place_id=None, method=None):
 		}
 	})
 
-
-
 # Deprecated
-def hub_chime(place_id=None):
-	return json.dumps({
-		"type": "place:HubChime",
-		"headers": {
-			"destination": "SERV:place:{}".format(place_id),
-			"correlationId": "68c97150-d5d2-4717-ae94-bf9e2457ed5d",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "place:HubChime",
-			"attributes": {}
-		}
-	})
+# def hub_chime(place_id=None):
+# 	return json.dumps({
+# 		"type": "place:HubChime",
+# 		"headers": {
+# 			"destination": "SERV:place:{}".format(place_id),
+# 			"correlationId": "68c97150-d5d2-4717-ae94-bf9e2457ed5d",
+# 			"isRequest": True
+# 		},
+# 		"payload": {
+# 			"messageType": "place:HubChime",
+# 			"attributes": {}
+# 		}
+# 	})
 
-def list_scenes(place_id=None):
-	return json.dumps({
-		"type": "scene:ListScenes",
-		"headers": {
-			"destination": "SERV:scene:",
-			"correlationId": "68c97150-d5d2-4717-ae94-bf9e2457ed5d",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "scene:ListScenes",
-			"attributes": {
-				"placeId": place_id
-			}
-		}
-	})
+# def list_scenes(place_id=None):
+# 	return json.dumps({
+# 		"type": "scene:ListScenes",
+# 		"headers": {
+# 			"destination": "SERV:scene:",
+# 			"correlationId": "68c97150-d5d2-4717-ae94-bf9e2457ed5d",
+# 			"isRequest": True
+# 		},
+# 		"payload": {
+# 			"messageType": "scene:ListScenes",
+# 			"attributes": {
+# 				"placeId": place_id
+# 			}
+# 		}
+# 	})
 
-def list_rules(place_id=None):
-	return json.dumps({
-		"type": "rule:ListRules",
-		"headers": {
-			"destination":"SERV:rule:",
-			"correlationId": "90704a94-ba52-4252-816b-e5680e7999a0",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "rule:ListRules",
-			"attributes": {
-				"placeId": place_id
-			}
-		}
-	})
+# def list_rules(place_id=None):
+# 	return json.dumps({
+# 		"type": "rule:ListRules",
+# 		"headers": {
+# 			"destination":"SERV:rule:",
+# 			"correlationId": "90704a94-ba52-4252-816b-e5680e7999a0",
+# 			"isRequest": True
+# 		},
+# 		"payload": {
+# 			"messageType": "rule:ListRules",
+# 			"attributes": {
+# 				"placeId": place_id
+# 			}
+# 		}
+# 	})
 
 
-def system_log(place_id=None):
-	return json.dumps({
-		"type": "sess:SetActivePlace",
-		"headers": {
-			"destination": "SERV:sess:",
-			"correlationId": "78f7d29a-222e-4976-9d2b-d1f553cf8881",
-			"isRequest": True
-		},
-		"payload":{
-			"messageType": "sess:SetActivePlace",
-			"attributes": {
-				#"placeId":"' + placeID + '"
-				"placeId": " {} ".format(place_id)
-			}
-		}
-	})
+# def system_log(place_id=None):
+# 	return json.dumps({
+# 		"type": "sess:SetActivePlace",
+# 		"headers": {
+# 			"destination": "SERV:sess:",
+# 			"correlationId": "78f7d29a-222e-4976-9d2b-d1f553cf8881",
+# 			"isRequest": True
+# 		},
+# 		"payload":{
+# 			"messageType": "sess:SetActivePlace",
+# 			"attributes": {
+# 				#"placeId":"' + placeID + '"
+# 				"placeId": " {} ".format(place_id)
+# 			}
+# 		}
+# 	})
 
-def send_remove(symbol=None):
-	return json.dumps({
-		"command": "remove",
-		"tickerSymbol": " {} ".format(symbol)
-	})
+# def send_remove(symbol=None):
+# 	return json.dumps({
+# 		"command": "remove",
+# 		"tickerSymbol": " {} ".format(symbol)
+# 	})

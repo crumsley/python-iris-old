@@ -103,96 +103,16 @@ def celsius_to_farenheit(temp):
 def generate_random(length=8):
 	return "".join(random.choice("0123456789abcdef") for x in range(length))
 
-def __missing_opts_error(method, missing):
-	return "the following required {0} parameters are missing: {1}".format(method, ", ".join(missing))
+def make_response(client=None, success=None, content_key=None, content=None):
+	client.success = success
+	status = "success" if success == True else "error"
 
-def __disallowed_opts_error(method, disallowed):
-	return "the following disallowed parameters were specified for the {0} method: {1}".format(method, ", ".join(disallowed))
-
-def __missing_optional_error(method, oneof):
-	return "the {0} method requires one of the following parameters: {1}".format(method, ", ".join(oneof))
-
-def __too_many_optional_error(method, oneof):
-	return "the {0} method will accept only one of the following parameters: {1}".format(method, ", ".join(oneof))
-
-def process_parameters(opts=None, required=None, oneof=None, valid=None):
-	content = {}
-	errors = []
-	method = inspect.stack()[1][3]
-	ints = []
-	booleans = []
-	string_booleans = []
-	dates = []
-
-	if "params" not in valid:
-		return content
-
-	filtered = {k: v for k, v in opts.items() if v is not None}
-	opts.clear()
-	opts.update(filtered)
-
-	missing = list( set(required) - set(opts.keys()) )
-	if (len(missing) != 0):
-		errors.append(__missing_opts_error(method, missing))
-
-	# Find disallowed options
-	#disallowed = list( set(opts.keys() - set(valid["params"])) )
-	#if (len(disallowed) != 0):
-	# errors.append(__disallowed_opts_error(method, disallowed))
-
-	if len(oneof) > 0:
-		for oneof_tuple in oneof:
-			oneof_list = list(oneof_tuple)
-			if len(set(oneof_list).intersection(opts.keys())) <= 0:
-				errors.append(__missing_optional_error(method, oneof_list))
-
-			if len(set(oneof_list).intersection(opts.keys())) > 1:
-				errors.append(__too_many_optional_error(method, oneof_list))
-
-	for param in valid["params"]:
-		if param in opts and param in valid["params"]:
-
-			if param in ints:
-				if not isinstance(opts[param], int):
-					try:
-						opts[param] = int(opts[param])
-					except:
-						errors.append("{} must be an integer".format(param))
-
-			if param in booleans:
-				if isinstance(opts[param], bool):
-					opts[param] = True if opts[param] == True else False
-				elif isinstance(opts[param], str):
-					opts[param] = True if opts[param].lower() == "true" else False
-				else:
-					opts[param] = "false"
-
-			if param in string_booleans:
-				if isinstance(opts[param], bool):
-					opts[param] = "true" if opts[param] == True else "false"
-				elif isinstance(opts[param], str):
-					opts[param] = "true" if opts[param].lower() == "true" else "false"
-				else:
-					opts[param] = "false"
-
-			if param in valid:
-				if opts[param] in valid[param]:
-					content[param] = opts[param]
-				else:
-					errors.append("{0} is an invalid {1}. valid options for the \"{2}\" parameter are: {3}".format(opts[param], param, param, ", ".join(valid[param])))
-			else:
-				content[param] = opts[param]
-
-			if param in dates:
-				if not re.match("^\d\d\d\d-\d\d-\d\d$", param):
-					errors.append("{0} uses an invalid date format. The format for date fields should be YYYY-MM-DD.".format(param))
-
-	if len(errors) > 0:
-		for error in errors:
-			logger.error(error)
-		sys.exit(1)
+	if content_key:	
+		return {"status": status, content_key: content}
 	else:
-		return content
+		response = content
+		response["status"] = status
+		return response
 
 # Begin python-specific
 def __check_python_version(req_version):

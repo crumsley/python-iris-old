@@ -6,6 +6,7 @@ from pprint import pprint
 
 def send(client=None, payload=None, debug=False):
 	method = __get_method(inspect.stack())
+	client.response = {}
 	client.logger.debug("Executing method: {0}".format(method))
 	client.logger.debug("Sending payload: {}".format(payload))
 	client.ws.send(payload)
@@ -25,13 +26,10 @@ def send(client=None, payload=None, debug=False):
 		else:
 			message = "The method {} failed with an unknown error.".format(method)
 
-		client.success = False
-		client.response = {"status": "error", "message": message}
+		client.response = utils.make_response(client=client, success=False, content_key="message", content=message)
 
 	else:
-		client.success = True
-		client.response = response
-		client.response["status"] = "success"
+		client.response = utils.make_response(client=client, success=True, content=response)
 
 def __get_method(stack):
 	invalid_scripts = ["<module>", "__init__"]

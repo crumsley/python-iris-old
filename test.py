@@ -4,7 +4,7 @@ from iris.core import Iris
 from iris.devices.switch import Switch
 from iris.devices.thermostat import Thermostat
 from iris.devices.doorlock import DoorLock
-from iris.devices.person import Person
+from iris.person import Person
 from pprint import pprint
 
 iris = Iris(
@@ -12,12 +12,13 @@ iris = Iris(
 	debug=True
 )
 
-name = "Bob Jones"
+name = ""
 
 p = Person(iris=iris)
 #p.list_persons()
-p.list_history_entries(name=name)
-#p.get_security_answers(name=name)
+#p.list_history_entries(name=name)
+p.get_security_answers(name=name)
+print(p.success)
 pprint(p.response)
 #s.foo()
 #pprint(s.response)

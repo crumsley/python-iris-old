@@ -32,6 +32,7 @@ class Iris(object):
 		auth.authenticate()
 		token = auth.token
 		cookie = "irisAuthToken={}".format(token)
+
 		self.init()
 		self.build_device_map()
 		self.build_person_map()
@@ -103,6 +104,7 @@ class Iris(object):
 		self.ws.close()
 
 	def get_hub(self, **kwargs):
+		# sends <class 'iris.core.Iris'> as client
 		request.send(
 			client=self,
 			payload=payloads.place(place_id=self.place_id, method="GetHub")
@@ -133,9 +135,3 @@ class Iris(object):
 				return None
 		else:
 			return None
-
-	def make_response(self, status=None, content_key=None, content=None):
-		return {
-			"status": status,
-			content_key: content
-		}
