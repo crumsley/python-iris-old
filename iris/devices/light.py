@@ -1,4 +1,3 @@
-import iris.attributes as attributes
 import iris.payloads as payloads
 import iris.request as request
 from iris.devices.device import Device
@@ -8,7 +7,6 @@ class Light(object):
 		Device.__init__(self, **kwargs)
 
 		self.namespace = "light"
-		self.attributes = attributes.devices[self.namespace]
 
 	def colormode(self, **kwargs):
 		mode = kwargs["mode"]

@@ -1,4 +1,3 @@
-import iris.attributes as attributes
 import iris.payloads as payloads
 import iris.request as request
 from iris.devices.device import Device
@@ -8,7 +7,6 @@ class Dimmer(Device):
 		Device.__init__(self, **kwargs)
 
 		self.namespace = "dimmer"
-		self.attributes = attributes[self.namespace]
 
 	def set_brightness(self, **kwargs):
 		level = kwargs["level"]

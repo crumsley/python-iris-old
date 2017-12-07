@@ -1,4 +1,3 @@
-import iris.attributes as attributes
 import iris.payloads as payloads
 import iris.request as request
 import iris.utils as utils
@@ -9,8 +8,6 @@ class Person(Device):
 		Device.__init__(self, **kwargs)
 
 		self.namespace = "person"
-		#self.attributes = attributes[self.namespace]
-		print(type(self.iris))
 
 	def list_persons(self, **kwargs):
 		payload = payloads.place(
@@ -26,6 +23,23 @@ class Person(Device):
 				namespace=self.namespace,
 				person_id=person_id,
 				method="ListHistoryEntries"
+			)
+			request.send(client=self, payload=payload, debug=self.iris.debug)
+		else:
+			self.response = utils.make_response(
+				client=self,
+				success=False,
+				content_key="message",
+				content="User {} not found.".format(kwargs["name"])
+			)
+
+	def list_mobile_devices(self, **kwargs):
+		person_id = self.iris.get_id(type="person", name=kwargs["name"])
+		if person_id:
+			payload = payloads.person(
+				namespace=self.namespace,
+				person_id=person_id,
+				method="ListMobileDevices"
 			)
 			request.send(client=self, payload=payload, debug=self.iris.debug)
 		else:

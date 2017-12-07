@@ -1,4 +1,3 @@
-import iris.attributes as attributes
 import iris.payloads as payloads
 import iris.request as request
 from iris.devices.device import Device
@@ -8,7 +7,6 @@ class Halo(object):
 		Device.__init__(self, **kwargs)
 
 		self.namespace = "halo"
-		self.attributes = attributes.devices[self.namespace]
 
 	def set_room(self, **kwargs):
 		setpoint = kwargs["room"]

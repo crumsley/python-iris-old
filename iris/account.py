@@ -1,4 +1,3 @@
-import iris.attributes as attributes
 import iris.payloads as payloads
 import iris.request as request
 from iris.devices.device import Device
@@ -8,7 +7,6 @@ class Account(Device):
 		Device.__init__(self, **kwargs)
 
 		self.namespace = "account"
-		#self.attributes = attributes[self.namespace]
 
 	def list_adjustments(self, **kwargs):
 		self.__account(method="ListAdjustments")
