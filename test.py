@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
 from iris.core import Iris
+from iris.account import Account
 from iris.devices.switch import Switch
 from iris.devices.thermostat import Thermostat
 from iris.devices.doorlock import DoorLock
 from iris.person import Person
+from iris.hub import Hub
 from pprint import pprint
 
 iris = Iris(
@@ -12,14 +14,36 @@ iris = Iris(
 	debug=True
 )
 
+h = Hub(iris=iris)
+#h.get_logs()
+#h.get_processes()
+#h.get_known_devices()
+#h.get_device_info()
+#h.list_hubs()
+#h.get_syslog()
+#h.chime()
+#h.pairing_request()
+#h.reset_log_level()
+#h.backup()
+#pprint(h.response)
+
+#a = Account(iris=iris)
+#a.list_adjustments()
+#a.list_devices()
+#a.list_hubs()
+#a.list_invoices()
+#a.list_places()
+#pprint(a.response)
+
+
 name = ""
 
-p = Person(iris=iris)
+#p = Person(iris=iris)
 #p.list_persons()
 #p.list_history_entries(name=name)
-p.get_security_answers(name=name)
-print(p.success)
-pprint(p.response)
+#p.get_security_answers(name=name)
+#print(p.success)
+#pprint(p.response)
 #s.foo()
 #pprint(s.response)
 #print(iris.hub_id)

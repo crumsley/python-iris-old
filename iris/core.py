@@ -8,6 +8,7 @@ import iris.payloads as payloads
 import iris.request as request
 import iris.utils as utils
 import iris.devices
+import sys
 from pprint import pprint
 
 class Iris(object):
@@ -48,16 +49,15 @@ class Iris(object):
 		self.get_place_id(result=result)
 
 		# Set active place. REQUIRED.
-		self.ws.send(payloads.set_active_place(place_id=self.place_id))
-		result = utils.validate_json(self.ws.recv())
-
-		self.get_hub_id()
+		payload = payloads.set_active_place(place_id=self.place_id)
+		request.send(client=self, payload=payload, debug=self.debug)
 
 	def get_hub_id(self, **kwargs):
 		self.get_hub()
 		if self.success:
 			attributes = self.response["payload"]["attributes"]
 			self.hub_id = attributes["hub"]["base:id"]
+			self.hub_address = attributes["hub"]["base:address"]
 
 	def get_place_id(self, result):
 		attributes = result["payload"]["attributes"]
@@ -65,6 +65,7 @@ class Iris(object):
 			name = place["placeName"]
 			self.places[name] = place
 		self.place_id = self.places[name]["placeId"]
+		self.account_id = self.places[name]["accountId"]
 
 	def build_device_map(self, **kwargs):
 		self.response = {}; payload = {}
@@ -122,7 +123,7 @@ class Iris(object):
 			payload=payloads.place(place_id=self.place_id, method="ListPersons")
 		)
 
-	def get_base_address(self, type=None, name=None):
+	def get_address(self, type=None, name=None):
 		if type == "person":
 			if name in self.persons:
 				return self.persons[name]["base:address"]
@@ -131,6 +132,20 @@ class Iris(object):
 		elif type == "device":
 			if name in self.devices:
 				return self.devices[name]["base:address"]
+			else:
+				return None
+		else:
+			return None
+
+	def get_id(self, type=None, name=None):
+		if type == "person":
+			if name in self.persons:
+				return self.persons[name]["base:id"]
+			else:
+				return None
+		elif type == "device":
+			if name in self.devices:
+				return self.devices[name]["base:id"]
 			else:
 				return None
 		else:

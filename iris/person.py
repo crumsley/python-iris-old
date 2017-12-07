@@ -1,6 +1,7 @@
 import iris.attributes as attributes
 import iris.payloads as payloads
 import iris.request as request
+import iris.utils as utils
 from iris.devices.device import Device
 
 class Person(Device):
@@ -19,32 +20,34 @@ class Person(Device):
 		request.send(client=self, payload=payload, debug=self.iris.debug)
 
 	def list_history_entries(self, **kwargs):
-		address = self.iris.get_base_address(type="person", name=kwargs["name"])
-		if address:
+		person_id = self.iris.get_id(type="person", name=kwargs["name"])
+		if person_id:
 			payload = payloads.person(
 				namespace=self.namespace,
-				address=address,
+				person_id=person_id,
 				method="ListHistoryEntries"
 			)
 			request.send(client=self, payload=payload, debug=self.iris.debug)
 		else:
-			self.response = self.iris.make_response(
+			self.response = utils.make_response(
+				client=self,
 				success=False,
 				content_key="message",
 				content="User {} not found.".format(kwargs["name"])
 			)
 
 	def get_security_answers(self, **kwargs):
-		address = self.iris.get_base_address(type="person", name=kwargs["name"])
-		if address:
+		person_id = self.iris.get_id(type="person", name=kwargs["name"])
+		if person_id:
 			payload = payloads.person(
 				namespace=self.namespace,
-				address=address,
+				person_id=person_id,
 				method="GetSecurityAnswers"
 			)
 			request.send(client=self, payload=payload, debug=self.iris.debug)
 		else:
-			self.response = self.iris.make_response(
+			self.response = utils.make_response(
+				client=self,
 				success=False,
 				content_key="message",
 				content="User {} not found.".format(kwargs["name"])

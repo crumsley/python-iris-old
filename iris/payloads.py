@@ -1,7 +1,5 @@
-import json
-
 def set_active_place(place_id=None):
-	return json.dumps({
+	return {
 		"type": "sess:SetActivePlace",
 		"headers": {
 			"destination":"SERV:sess:",
@@ -14,10 +12,10 @@ def set_active_place(place_id=None):
 				"placeId": place_id
 			}
 		}
-	})
+	}
 
 def get_attributes(device_id=None, namespace=None, key=None):
-	return json.dumps({
+	return {
 		"type": "base:GetAttributes",
 		"headers": {
 			"destination": "DRIV:dev:{}".format(device_id),
@@ -30,10 +28,10 @@ def get_attributes(device_id=None, namespace=None, key=None):
 				namespace: key,
 			}
 		}
-	})
+	}
 
 def set_attributes(place_id: None, device_id: None, namespace: None, key: None, value: None):
-	return json.dumps({
+	return {
 		"type": "base:SetAttributes",
 		"headers": {
 			#"destination": "DRIV:dev:' + devIDlist[(ID - 1)] + '",
@@ -47,14 +45,83 @@ def set_attributes(place_id: None, device_id: None, namespace: None, key: None, 
 				"{}:{}".format(namespace, key): value
 			}
 		}
-	})
+	}
 
-def person(address=None, method=None, namespace=None):
-	return json.dumps({
-		"type": "person:{}".format(method),
+def account(account_id=None, method=None):
+	return {
+		"type": "account:{}".format(method),
 		"headers": {
-			#"destination": "SERV:person:{}".format(person_id),
-			"destination": address,
+			"destination": "SERV:account:{}".format(account_id),
+			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"isRequest": True
+		},
+		"payload": {
+			"messageType": "account:{}".format(method),
+			"attributes": {}
+		}
+	}
+
+def hub(hub_address=None, method=None):
+	return {
+		"type": "hub:{}".format(method),
+		"headers": {
+			"destination": hub_address,
+			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"isRequest": True
+		},
+		"payload": {
+			"messageType": "hub:{}".format(method),
+			"attributes": {}
+		}
+	}
+
+def hubadv(hub_address=None, method=None):
+	return {
+		"type": "hubadv:{}".format(method),
+		"headers": {
+			"destination": hub_address,
+			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"isRequest": True
+		},
+		"payload": {
+			"messageType": "hubadv:{}".format(method),
+			"attributes": {}
+		}
+	}
+
+def hubbackup(hub_address=None, method=None):
+	return {
+		"type": "hubbackup:{}".format(method),
+		"headers": {
+			"destination": hub_address,
+			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"isRequest": True
+		},
+		"payload": {
+			"messageType": "hubbackup:{}".format(method),
+			"attributes": {}
+		}
+	}
+
+def hubdebug(hub_address=None, method=None):
+	return {
+		"type": "hubdebug:{}".format(method),
+		"headers": {
+			"destination": hub_address,
+			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"isRequest": True
+		},
+		"payload": {
+			"messageType": "hubdebug:{}".format(method),
+			"attributes": {}
+		}
+	}
+
+def person(person_id=None, method=None, namespace=None):
+	return {
+		"type": "{}:{}".format(namespace, method),
+		"headers": {
+			"destination": "SERV:{}:{}".format(namespace, person_id),
 			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
 			"isRequest": True
 		},
@@ -62,25 +129,25 @@ def person(address=None, method=None, namespace=None):
 			"messageType": "{}:{}".format(namespace, method),
 			"attributes": {}
 		}
-	})
+	}
 
 def place(place_id=None, method=None):
-	return json.dumps({
+	return {
 		"type": "place:{}".format(method),
 		"headers": {
 			"destination": "SERV:place:{}".format(place_id),
-			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"correlationId": "79cd5c7c-f5f7-4dba-9032-99ad183e64be",
 			"isRequest": True
 		},
 		"payload": {
 			"messageType": "place:{}".format(method),
 			"attributes": {}
 		}
-	})
+	}
 
 # Deprecated
 # def hub_chime(place_id=None):
-# 	return json.dumps({
+# 	return {
 # 		"type": "place:HubChime",
 # 		"headers": {
 # 			"destination": "SERV:place:{}".format(place_id),
@@ -91,10 +158,10 @@ def place(place_id=None, method=None):
 # 			"messageType": "place:HubChime",
 # 			"attributes": {}
 # 		}
-# 	})
+# 	}
 
 # def list_scenes(place_id=None):
-# 	return json.dumps({
+# 	return {
 # 		"type": "scene:ListScenes",
 # 		"headers": {
 # 			"destination": "SERV:scene:",
@@ -107,10 +174,10 @@ def place(place_id=None, method=None):
 # 				"placeId": place_id
 # 			}
 # 		}
-# 	})
+# 	}
 
 # def list_rules(place_id=None):
-# 	return json.dumps({
+# 	return {
 # 		"type": "rule:ListRules",
 # 		"headers": {
 # 			"destination":"SERV:rule:",
@@ -123,11 +190,11 @@ def place(place_id=None, method=None):
 # 				"placeId": place_id
 # 			}
 # 		}
-# 	})
+# 	}
 
 
 # def system_log(place_id=None):
-# 	return json.dumps({
+# 	return {
 # 		"type": "sess:SetActivePlace",
 # 		"headers": {
 # 			"destination": "SERV:sess:",
@@ -141,10 +208,10 @@ def place(place_id=None, method=None):
 # 				"placeId": " {} ".format(place_id)
 # 			}
 # 		}
-# 	})
+# 	}
 
 # def send_remove(symbol=None):
-# 	return json.dumps({
+# 	return {
 # 		"command": "remove",
 # 		"tickerSymbol": " {} ".format(symbol)
-# 	})
+# 	}

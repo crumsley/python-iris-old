@@ -1,11 +1,13 @@
 import inspect
 import iris.utils as utils
+import json
 import os
 import sys
 from pprint import pprint
 
 def send(client=None, payload=None, debug=False):
 	method = __get_method(inspect.stack())
+	payload = json.dumps(payload)
 	client.response = {}
 	client.logger.debug("Executing method: {0}".format(method))
 	client.logger.debug("Sending payload: {}".format(payload))
