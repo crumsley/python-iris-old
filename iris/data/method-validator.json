@@ -1,0 +1,1863 @@
+{
+    "bridge": {
+        "methods": {
+            "StartPairing": {
+                "required": [
+                    "timeout"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the bridge device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the bridge device."
+                        },
+                        "timeout": {
+                            "type": "long",
+                            "description": "Amount of time that the bridge device will stay in pairing mode in milliseconds.",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "StopPairing": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the bridge device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the bridge device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "camera": {
+        "methods": {
+            "StartStreaming": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the camera device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the camera device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "cameraptz": {
+        "methods": {
+            "GotoHome": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the cameraptz device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the cameraptz device."
+                        }
+                    }
+                }
+            },
+            "GotoAbsolute": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the cameraptz device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the cameraptz device."
+                        }
+                    }
+                }
+            },
+            "GotoRelative": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the cameraptz device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the cameraptz device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "centralitesmartplug": {
+        "methods": {
+            "SetLearnMode": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the centralitesmartplug device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the centralitesmartplug device."
+                        }
+                    }
+                }
+            },
+            "SendNif": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the centralitesmartplug device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the centralitesmartplug device."
+                        }
+                    }
+                }
+            },
+            "Reset": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the centralitesmartplug device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the centralitesmartplug device."
+                        }
+                    }
+                }
+            },
+            "Pair": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the centralitesmartplug device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the centralitesmartplug device."
+                        }
+                    }
+                }
+            },
+            "Query": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the centralitesmartplug device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the centralitesmartplug device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "devadv": {
+        "methods": {
+            "UpgradeDriver": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devadv device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devadv device."
+                        }
+                    }
+                }
+            },
+            "GetReflexes": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devadv device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devadv device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "devconn": {
+        "methods": {
+            "LostDevice": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devconn device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devconn device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "devota": {
+        "methods": {
+            "FirmwareUpdate": {
+                "required": [
+                    "url"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devota device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devota device."
+                        },
+                        "url": {
+                            "type": "string",
+                            "description": "The URL of the firmware.",
+                            "optional": false
+                        },
+                        "priority": {
+                            "type": "enum",
+                            "description": "The priority of the firmware update. Updates at NORMAL priority may be refused in some senarios.",
+                            "optional": true
+                        }
+                    },
+                    "priority": [
+                        "NORMAL",
+                        "URGENT"
+                    ]
+                }
+            },
+            "FirmwareUpdateCancel": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devota device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devota device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "devmock": {
+        "methods": {
+            "SetAttributes": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devmock device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devmock device."
+                        }
+                    }
+                }
+            },
+            "Connect": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devmock device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devmock device."
+                        }
+                    }
+                }
+            },
+            "Disconnect": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the devmock device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the devmock device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "dim": {
+        "methods": {
+            "RampBrightness": {
+                "required": [
+                    "brightness",
+                    "seconds"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the dim device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the dim device."
+                        },
+                        "brightness": {
+                            "type": "int",
+                            "description": "Brightness percentage within the range of 0..100",
+                            "optional": false
+                        },
+                        "seconds": {
+                            "type": "int",
+                            "description": "Number of seconds to reach desired brightness; must be a positive integer",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "IncrementBrightness": {
+                "required": [
+                    "amount"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the dim device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the dim device."
+                        },
+                        "amount": {
+                            "type": "int",
+                            "description": "The amount to increase the brightness as a percentage from 0 to 100",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "DecrementBrightness": {
+                "required": [
+                    "amount"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the dim device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the dim device."
+                        },
+                        "amount": {
+                            "type": "int",
+                            "description": "The amount to decrease the brightness as a percentage from 0 to 100",
+                            "optional": false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "doorlock": {
+        "methods": {
+            "AuthorizePerson": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the doorlock device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the doorlock device."
+                        }
+                    }
+                }
+            },
+            "DeauthorizePerson": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the doorlock device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the doorlock device."
+                        }
+                    }
+                }
+            },
+            "BuzzIn": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the doorlock device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the doorlock device."
+                        }
+                    }
+                }
+            },
+            "ClearAllPins": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the doorlock device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the doorlock device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "halo": {
+        "methods": {
+            "StartHush": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the halo device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the halo device."
+                        }
+                    }
+                }
+            },
+            "SendHush": {
+                "required": [
+                    "color"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the halo device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the halo device."
+                        },
+                        "color": {
+                            "type": "enum",
+                            "description": "Color the user says is being currently displayed by Halo in the Hush process.",
+                            "optional": false
+                        }
+                    },
+                    "color": [
+                        "RED",
+                        "BLUE",
+                        "GREEN"
+                    ]
+                }
+            },
+            "CancelHush": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the halo device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the halo device."
+                        }
+                    }
+                }
+            },
+            "StartTest": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the halo device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the halo device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "ident": {
+        "methods": {
+            "Identify": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the ident device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the ident device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "irrcont": {
+        "methods": {
+            "WaterNowV2": {
+                "required": [
+                    "zone",
+                    "duration"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrcont device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrcont device."
+                        },
+                        "zone": {
+                            "type": "string",
+                            "description": "The zone number to begin watering.",
+                            "optional": false
+                        },
+                        "duration": {
+                            "type": "int",
+                            "description": "How long, in minutes, to water the zone.",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "CancelV2": {
+                "required": [
+                    "zone"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrcont device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrcont device."
+                        },
+                        "zone": {
+                            "type": "string",
+                            "description": "The zone number to begin watering.",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "WaterNow": {
+                "required": [
+                    "duration"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrcont device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrcont device."
+                        },
+                        "zonenum": {
+                            "type": "int",
+                            "description": "This parameter was deprecated in 1.8.",
+                            "optional": true
+                        },
+                        "duration": {
+                            "type": "int",
+                            "description": "How long, in minutes, to water the zone.",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "Cancel": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrcont device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrcont device."
+                        },
+                        "zonenum": {
+                            "type": "int",
+                            "description": "This parameter was deprecated in 1.8.",
+                            "optional": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "irrsched": {
+        "methods": {
+            "EnableSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "DisableSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "ClearEvenOddSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "SetEvenOddSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "ClearIntervalSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "SetIntervalSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "SetIntervalStart": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "ClearWeeklySchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            },
+            "SetWeeklySchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the irrsched device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the irrsched device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "keypad": {
+        "methods": {
+            "BeginArming": {
+                "required": [
+                    "delayInS",
+                    "alarmMode"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the keypad device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the keypad device."
+                        },
+                        "delayInS": {
+                            "type": "int",
+                            "description": "The exit delay in seconds",
+                            "optional": false
+                        },
+                        "alarmMode": {
+                            "type": "enum",
+                            "description": "The mode the alarm should be armed into.",
+                            "optional": false
+                        }
+                    },
+                    "alarmMode": [
+                        "ON",
+                        "PARTIAL"
+                    ]
+                }
+            },
+            "Armed": {
+                "required": [
+                    "alarmMode"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the keypad device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the keypad device."
+                        },
+                        "alarmMode": {
+                            "type": "enum",
+                            "description": "The mode the alarm is armed into.",
+                            "optional": false
+                        }
+                    },
+                    "alarmMode": [
+                        "ON",
+                        "PARTIAL"
+                    ]
+                }
+            },
+            "Disarmed": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the keypad device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the keypad device."
+                        }
+                    }
+                }
+            },
+            "Soaking": {
+                "required": [
+                    "durationInS",
+                    "alarmMode"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the keypad device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the keypad device."
+                        },
+                        "durationInS": {
+                            "type": "int",
+                            "description": "The mode the alarm is armed into.",
+                            "optional": false
+                        },
+                        "alarmMode": {
+                            "type": "enum",
+                            "description": "The mode the alarm is armed into.",
+                            "optional": false
+                        }
+                    },
+                    "alarmMode": [
+                        "ON",
+                        "PARTIAL"
+                    ]
+                }
+            },
+            "Alerting": {
+                "required": [
+                    "alarmMode"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the keypad device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the keypad device."
+                        },
+                        "alarmMode": {
+                            "type": "enum",
+                            "description": "The mode the alarm is armed into.",
+                            "optional": false
+                        }
+                    },
+                    "alarmMode": [
+                        "ON",
+                        "PARTIAL",
+                        "PANIC"
+                    ]
+                }
+            },
+            "Chime": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the keypad device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the keypad device."
+                        }
+                    }
+                }
+            },
+            "ArmingUnavailable": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the keypad device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the keypad device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "leakh2o": {
+        "methods": {
+            "leakh2o": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the leakh2o device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the leakh2o device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "petdoor": {
+        "methods": {
+            "RemoveToken": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the petdoor device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the petdoor device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "schedulable": {
+        "methods": {
+            "EnableSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the schedulable device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the schedulable device."
+                        }
+                    }
+                }
+            },
+            "DisableSchedule": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the schedulable device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the schedulable device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "shade": {
+        "methods": {
+            "GoToOpen": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the shade device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the shade device."
+                        }
+                    }
+                }
+            },
+            "GoToClosed": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the shade device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the shade device."
+                        }
+                    }
+                }
+            },
+            "GoToFavorite": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the shade device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the shade device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "somfyv1": {
+        "methods": {
+            "GoToOpen": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the somfyv1 device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the somfyv1 device."
+                        }
+                    }
+                }
+            },
+            "GoToClosed": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the somfyv1 device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the somfyv1 device."
+                        }
+                    }
+                }
+            },
+            "GoToFavorite": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the somfyv1 device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the somfyv1 device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "therm": {
+        "methods": {
+            "changeFilter": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the therm device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the therm device."
+                        }
+                    }
+                }
+            },
+            "SetIdealTemperature": {
+                "required": [
+                    "temperature"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the therm device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the therm device."
+                        },
+                        "temperature": {
+                            "type": "double",
+                            "description": "The target temperature to set.",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "IncrementIdealTemperature": {
+                "required": [
+                    "amount"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the therm device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the therm device."
+                        },
+                        "amount": {
+                            "type": "double",
+                            "description": "The amount to increment the temperature",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "DecrementIdealTemperature": {
+                "required": [
+                    "amount"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the therm device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the therm device."
+                        },
+                        "amount": {
+                            "type": "double",
+                            "description": "The amount to decrement the temperature",
+                            "optional": false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "watersoftener": {
+        "methods": {
+            "rechargeNow": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the watersoftener device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the watersoftener device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "noaa": {
+        "methods": {
+            "ScanStations": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the noaa device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the noaa device."
+                        }
+                    }
+                }
+            },
+            "PlayStation": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the noaa device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the noaa device."
+                        }
+                    }
+                }
+            },
+            "StopPlayingStation": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the noaa device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the noaa device."
+                        }
+                    }
+                }
+            },
+            "SelectStation": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the noaa device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the noaa device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "wifi": {
+        "methods": {
+            "Connect": {
+                "required": [
+                    "ssid",
+                    "security"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the wifi device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the wifi device."
+                        },
+                        "ssid": {
+                            "type": "string",
+                            "description": "SSID of base station connected to.",
+                            "optional": false
+                        },
+                        "bssid": {
+                            "type": "string",
+                            "description": "BSSID of base station connected to.",
+                            "optional": true
+                        },
+                        "security": {
+                            "type": "string",
+                            "description": "Security of connection.",
+                            "optional": false
+                        },
+                        "key": {
+                            "type": "string",
+                            "description": "Security key.",
+                            "optional": true
+                        }
+                    }
+                }
+            },
+            "Disconnect": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the wifi device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the wifi device."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "wifiscan": {
+        "methods": {
+            "StartWifiScan": {
+                "required": [
+                    "timeout"
+                ],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the wifiscan device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the wifiscan device."
+                        },
+                        "timeout": {
+                            "type": "int",
+                            "description": "The number of seconds to scan unless endWifiScan() is called.",
+                            "optional": false
+                        }
+                    }
+                }
+            },
+            "EndWifiScan": {
+                "required": [],
+                "oneof": [
+                    [
+                        "device_name",
+                        "device_id"
+                    ]
+                ],
+                "valid": {
+                    "params": {
+                        "device_name": {
+                            "type": "string",
+                            "decription": "The name of the wifiscan device."
+                        },
+                        "device_id": {
+                            "type": "uuid",
+                            "decription": "The UUID of the wifiscan device."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,9 @@
 import iris.payloads as payloads
 import iris.request as request
+import iris.utils as utils
+import sys
 from iris.devices.device import Device
+from pprint import pprint
 
 class Thermostat(object):
 	def __init__(self, **kwargs):
@@ -95,4 +98,38 @@ class Thermostat(object):
 			value=days
 		)
 		request.send(client=self, payload=payload, debug=self.iris.debug)
+
+	def __therm_request(self, **kwargs):
+			type = None
+			value = None
+			method = kwargs["method"]
+			self.response = {}; payload = {}
+			required, oneof, valid = utils.fetch_parameters(self.namespace, method, self.iris.validator)
+			content = utils.process_parameters(opts=kwargs, required=required, oneof=oneof, valid=valid)
+			if isinstance(content, dict):
+				if "device_name" in content:
+					type = "name"
+					value = content["device_name"]
+					device_address = self.iris.get_address(type="device", name=content["device_name"])
+				elif "device_id" in content:
+					type = "ID"
+					value = content["device_id"]
+					device_address = self.iris.get_address(type="device", id=content["device_id"])
+
+				if device_address:
+					payload = payloads.therm_method(
+						namespace=self.namespace,
+						device_address=device_address,
+						method=method,
+					)
+					for k, v in content.items(): payload["payload"]["attributes"][k] = v
+					request.send(client=self, payload=payload, debug=self.iris.debug)
+				else:
+					self.response = utils.make_response(client=self, success=False, content="The device with the {} {} does not exist.".format(type, value))
+
+	def change_filter(self, **kwargs):
+		kwargs["device_address"] = "DRIV:dev:11586370-0224-4f40-a89b-d0eda4855b31"
+		kwargs["method"] = "changeFilter"
+		self.__therm_request(**kwargs)
+		# DRIV:dev:11586370-0224-4f40-a89b-d0eda4855b31
 

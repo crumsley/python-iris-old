@@ -11,6 +11,7 @@ import sys
 import time
 import yaml
 from distutils.version import LooseVersion, StrictVersion
+from pprint import pprint
 
 def configure_logger(loggerid=None, debug=False):
 	if loggers.get(loggerid):
@@ -110,9 +111,21 @@ def make_response(client=None, success=None, content_key=None, content=None):
 	if content_key:	
 		return {"status": status, content_key: content}
 	else:
-		response = content
-		response["status"] = status
+		if content:
+			if isinstance(content, dict):
+				response = content
+				response["status"] = status
+			elif isinstance(content, str):
+				response = {"status": status, "message": content}
+		else:
+			response = {"status": status, "message": "Unknown"}
 		return response
+
+def fetch_parameters(namespace, method, validator):
+	required = validator[namespace]["methods"][method]["required"]
+	oneof = validator[namespace]["methods"][method]["oneof"]
+	valid = validator[namespace]["methods"][method]["valid"]
+	return required, oneof, valid
 
 def __missing_opts_error(method, missing):
 	return "the following required {0} parameters are missing: {1}".format(method, ", ".join(missing))
@@ -126,14 +139,24 @@ def __missing_optional_error(method, oneof):
 def __too_many_optional_error(method, oneof):
 	return "the {0} method will accept only one of the following parameters: {1}".format(method, ", ".join(oneof))
 
+def __get_method(stack):
+	invalid_scripts = ["<module>", "__init__"]
+	usable_bits = [frame for frame in stack if os.path.basename(frame[3]) not in invalid_scripts]
+	return usable_bits[-1][3] if len(usable_bits) > 0 else "unknown method"
+
 def process_parameters(opts=None, required=None, oneof=None, valid=None):
 	content = {}
 	errors = []
-	method = inspect.stack()[1][3]
-	ints = []
-	booleans = []
-	string_booleans = []
-	dates = []
+	method = __get_method(inspect.stack())
+
+	type_map = {
+		"boolean": bool,
+		"enum": str,
+		"int": int,
+		"string": str,
+		"uuid": str,
+		"double": float,
+	}
 
 	if "params" not in valid:
 		return content
@@ -152,51 +175,36 @@ def process_parameters(opts=None, required=None, oneof=None, valid=None):
 	# errors.append(__disallowed_opts_error(method, disallowed))
 
 	if len(oneof) > 0:
-		for oneof_tuple in oneof:
-			oneof_list = list(oneof_tuple)
+		for oneof_list in oneof:
 			if len(set(oneof_list).intersection(opts.keys())) <= 0:
 				errors.append(__missing_optional_error(method, oneof_list))
 
 			if len(set(oneof_list).intersection(opts.keys())) > 1:
 				errors.append(__too_many_optional_error(method, oneof_list))
 
-	for param in valid["params"]:
+	for param, obj in valid["params"].items():
 		if param in opts and param in valid["params"]:
+			required_type = obj["type"]
+			if required_type in type_map:
+				required_type = type_map[required_type]
+			else:
+				required_type = str
 
-			if param in ints:
-				if not isinstance(opts[param], int):
-					try:
-						opts[param] = int(opts[param])
-					except:
-						errors.append("{} must be an integer".format(param))
+			#if isinstance(opts[param], int):
+			#	opts[param] = str(opts[param])
 
-			if param in booleans:
-				if isinstance(opts[param], bool):
-					opts[param] = True if opts[param] == True else False
-				elif isinstance(opts[param], str):
-					opts[param] = True if opts[param].lower() == "true" else False
-				else:
-					opts[param] = "false"
-
-			if param in string_booleans:
-				if isinstance(opts[param], bool):
-					opts[param] = "true" if opts[param] == True else "false"
-				elif isinstance(opts[param], str):
-					opts[param] = "true" if opts[param].lower() == "true" else "false"
-				else:
-					opts[param] = "false"
+			if not isinstance(opts[param], required_type):
+				message = "The parameter {} is supposed to be of type {} but is actually of type {}".format(param, required_type, type(opts[param]))
+				errors.append(message)
 
 			if param in valid:
-				if opts[param] in valid[param]:
+				lower = [e.lower() for e in valid[param]]
+				if opts[param].lower() in lower:
 					content[param] = opts[param]
 				else:
 					errors.append("{0} is an invalid {1}. valid options for the \"{2}\" parameter are: {3}".format(opts[param], param, param, ", ".join(valid[param])))
 			else:
 				content[param] = opts[param]
-
-			if param in dates:
-				if not re.match("^\d\d\d\d-\d\d-\d\d$", param):
-					errors.append("{0} uses an invalid date format. The format for date fields should be YYYY-MM-DD.".format(param))
 
 	if len(errors) > 0:
 		for error in errors:

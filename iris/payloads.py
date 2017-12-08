@@ -47,198 +47,44 @@ def set_attributes(place_id: None, device_id: None, namespace: None, key: None, 
 		}
 	}
 
-def account(account_id=None, method=None):
+def account_method(account_id=None, method=None, namespace=None):
 	return {
-		"type": "account:{}".format(method),
+		"type": "{}:{}".format(namespace, method),
 		"headers": {
 			"destination": "SERV:account:{}".format(account_id),
 			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
 			"isRequest": True
 		},
 		"payload": {
-			"messageType": "account:{}".format(method),
+			"messageType": "{}:{}".format(namespace, method),
 			"attributes": {}
 		}
 	}
 
-def hub(hub_address=None, method=None):
+def hub_method(hub_address=None, method=None, namespace=None):
 	return {
-		"type": "hub:{}".format(method),
+		"type": "{}:{}".format(namespace, method),
 		"headers": {
 			"destination": hub_address,
 			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
 			"isRequest": True
 		},
 		"payload": {
-			"messageType": "hub:{}".format(method),
+			"messageType": "{}:{}".format(namespace, method),
 			"attributes": {}
 		}
 	}
 
-def hub4g(hub_address=None, method=None):
+def keypad_method(place_id=None, method=None, namespace=None):
 	return {
-		"type": "hub4g:{}".format(method),
+		"type": "{}:{}".format(namespace, method),
 		"headers": {
 			"destination": hub_address,
 			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
 			"isRequest": True
 		},
 		"payload": {
-			"messageType": "hub4g:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubadv(hub_address=None, method=None):
-	return {
-		"type": "hubadv:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubadv:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubalarm(hub_address=None, method=None):
-	return {
-		"type": "hubalarm:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubalarm:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubbackup(hub_address=None, method=None):
-	return {
-		"type": "hubbackup:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubbackup:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubchime(hub_address=None, method=None):
-	return {
-		"type": "hubchime:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubchime:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubdebug(hub_address=None, method=None):
-	return {
-		"type": "hubdebug:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubdebug:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubmetrics(hub_address=None, method=None):
-	return {
-		"type": "hubmetrics:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubmetrics:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubnet(hub_address=None, method=None):
-	return {
-		"type": "hubnet:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubnet:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubsercomm(hub_address=None, method=None):
-	return {
-		"type": "hubsercomm:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubsercomm:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubsounds(hub_address=None, method=None):
-	return {
-		"type": "hubsounds:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubsounds:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubzigbee(hub_address=None, method=None):
-	return {
-		"type": "hubsounds:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubsounds:{}".format(method),
-			"attributes": {}
-		}
-	}
-
-def hubzwave(hub_address=None, method=None):
-	return {
-		"type": "hubzwave:{}".format(method),
-		"headers": {
-			"destination": hub_address,
-			"correlationId": "73cd5c7c-f5f7-4dba-9032-99ad183e64be",
-			"isRequest": True
-		},
-		"payload": {
-			"messageType": "hubzwave:{}".format(method),
+			"messageType": "{}:{}".format(namespace, method),
 			"attributes": {}
 		}
 	}
@@ -267,6 +113,21 @@ def place(place_id=None, method=None):
 		},
 		"payload": {
 			"messageType": "place:{}".format(method),
+			"attributes": {}
+		}
+	}
+
+def therm_method(device_address=None, method=None, namespace=None):
+	return {
+		"type": "{}:{}".format(namespace, method),
+		"headers": {
+		"destination": device_address,
+			#"destination": "DRIV:dev:{}".format(device_id),
+			"correlationId": "78cd5c7c-f5f7-4dba-9032-99ad183e64be",
+			"isRequest": True
+		},
+		"payload": {
+			"messageType": "{}:{}".format(namespace, method),
 			"attributes": {}
 		}
 	}

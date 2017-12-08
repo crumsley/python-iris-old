@@ -1,4 +1,7 @@
 import inspect
+import json
+import os
+import pkgutil
 import re
 import sys
 import websocket
@@ -39,6 +42,13 @@ class Iris(object):
 		self.build_person_map()
 		self.get_hub_id()
 
+		#data = pkgutil.get_data("iris", "data/method-validator.json")
+		#print(data)
+		# This is a hack to get it to work until I can get python data to work
+		pwd = os.path.dirname(os.path.realpath(__file__))
+		vp = "{}/data/method-validator.json".format(pwd)
+		self.validator = json.loads(open(vp, "r").read())
+
 	def init(self, **kwargs):
 		self.ws = websocket.create_connection(
 			self.ws_uri,
@@ -70,17 +80,9 @@ class Iris(object):
 	def build_device_map(self, **kwargs):
 		self.response = {}; payload = {}
 		self.list_devices()
+		
 		if self.success:
-			self.devices = {}
-			if "payload" in self.response:
-				if "attributes" in self.response["payload"]:
-					if "devices" in self.response["payload"]["attributes"]:
-						if isinstance(self.response["payload"]["attributes"]["devices"], list):
-							for device in self.response["payload"]["attributes"]["devices"]:
-								device_name = device["dev:name"]
-								self.devices[device_name] = device
-			self.response = {}
-
+			self.devices = self.response["payload"]["attributes"]["devices"]
 		else:
 			raise exception.DeviceMapError(message=self.response)
 
@@ -88,16 +90,8 @@ class Iris(object):
 		self.response = {}; payload = {}
 		self.list_persons()
 		if self.success:
-			self.persons = {}
-			if "payload" in self.response:
-				if "attributes" in self.response["payload"]:
-					if "persons" in self.response["payload"]["attributes"]:
-						if isinstance(self.response["payload"]["attributes"]["persons"], list):
-							for person in self.response["payload"]["attributes"]["persons"]:
-								name = "{} {}".format(person["person:firstName"], person["person:lastName"])
-								self.persons[name] = person
+			self.persons = self.response["payload"]["attributes"]["persons"]
 			self.response = {}
-
 		else:
 			raise exception.PersonMapError(message=self.response)
 
@@ -123,30 +117,28 @@ class Iris(object):
 			payload=payloads.place(place_id=self.place_id, method="ListPersons")
 		)
 
-	def get_address(self, type=None, name=None):
-		if type == "person":
-			if name in self.persons:
-				return self.persons[name]["base:address"]
-			else:
-				return None
-		elif type == "device":
-			if name in self.devices:
-				return self.devices[name]["base:address"]
-			else:
-				return None
-		else:
-			return None
+	def get_address(self, type=None, id=None, name=None):
+		addresses = []
+		if type == "device":
+			if id:
+				addresses = [d["base:address"] for d in self.devices if d["base:id"] == id]
+			elif name:
+				addresses = [d["base:address"] for d in self.devices if d["dev:name"] == name]
+
+		elif type == "person":
+			if id:
+				addresses = [p["base:address"] for p in self.persons if p["base:id"] == id]
+			if name:
+				addresses = [p["base:address"] for p in self.persons if "{} {}".format(p["person:firstName"], p["person:lastName"]).lower() == name.lower()]
+
+		return addresses[0] if len(addresses) > 0 else None
 
 	def get_id(self, type=None, name=None):
-		if type == "person":
-			if name in self.persons:
-				return self.persons[name]["base:id"]
-			else:
-				return None
-		elif type == "device":
-			if name in self.devices:
-				return self.devices[name]["base:id"]
-			else:
-				return None
-		else:
-			return None
+		ids = []
+		if type == "device":
+			ids = [d["base:id"] for d in self.devices if d["dev:name"] == name][0]
+
+		elif type == "person":
+			ids = [p["base:id"] for p in self.persons if "{} {}".format(p["person:firstName"], p["person:lastName"]).lower() == name.lower()][0]
+
+		return ids[0] if len(ids) > 0 else None
