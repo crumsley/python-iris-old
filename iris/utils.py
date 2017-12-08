@@ -174,13 +174,14 @@ def process_parameters(opts=None, required=None, oneof=None, valid=None):
 	#if (len(disallowed) != 0):
 	# errors.append(__disallowed_opts_error(method, disallowed))
 
-	if len(oneof) > 0:
-		for oneof_list in oneof:
-			if len(set(oneof_list).intersection(opts.keys())) <= 0:
-				errors.append(__missing_optional_error(method, oneof_list))
+	if oneof:
+		if len(oneof) > 0:
+			for oneof_list in oneof:
+				if len(set(oneof_list).intersection(opts.keys())) <= 0:
+					errors.append(__missing_optional_error(method, oneof_list))
 
-			if len(set(oneof_list).intersection(opts.keys())) > 1:
-				errors.append(__too_many_optional_error(method, oneof_list))
+				if len(set(oneof_list).intersection(opts.keys())) > 1:
+					errors.append(__too_many_optional_error(method, oneof_list))
 
 	for param, obj in valid["params"].items():
 		if param in opts and param in valid["params"]:

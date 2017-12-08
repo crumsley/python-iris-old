@@ -6,16 +6,14 @@ from iris.devices.device import Device
 class Hub(Device):
 	def __init__(self, **kwargs):
 		Device.__init__(self, **kwargs)
-
 		self.namespace = "hub"
-
 
 	def __hub_request(self, **kwargs):
 		namespace = kwargs["namespace"]
 		method = kwargs["method"]
 		self.response = {}; payload = {}
-		required, valid = utils.fetch_parameters(namespace, method, self.iris.validator)
-		content = utils.process_parameters(opts=kwargs, required=required, valid=valid)
+		required, oneof, valid = utils.fetch_parameters(namespace, method, self.iris.validator)
+		content = utils.process_parameters(opts=kwargs, required=required, oneof=oneof, valid=valid)
 		if isinstance(content, dict):
 			payload = payloads.hub_method(
 				namespace=namespace,

@@ -14,8 +14,8 @@ class Account(Device):
 		namespace = self.namespace
 		method = kwargs["method"]
 		self.response = {}; payload = {}
-		required, valid = utils.fetch_parameters(namespace, method, self.iris.validator)
-		content = utils.process_parameters(opts=kwargs, required=required, valid=valid)
+		required, oneof, valid = utils.fetch_parameters(namespace, method, self.iris.validator)
+		content = utils.process_parameters(opts=kwargs, required=required, oneof=oneof, valid=valid)
 		if isinstance(content, dict):
 			payload = payloads.account_method(
 				namespace=namespace,
@@ -44,9 +44,3 @@ class Account(Device):
 	def list_places(self, **kwargs):
 		kwargs["method"] = "ListPlaces"
 		self.__account_request(**kwargs)
-	def __account(self, **kwargs):
-		payload = payloads.account(
-			account_id=self.iris.account_id,
-			method=kwargs["method"]
-		)
-		request.send(client=self, payload=payload, debug=self.iris.debug)
